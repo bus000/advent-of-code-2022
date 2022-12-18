@@ -55,11 +55,11 @@ import qualified System.Exit as Sys
 main :: IO ()
 main = defaultMain parseInput handleInput
 
-data ElfGroup a = ElfGroup [Rucksack a] deriving (Show, Eq, Ord)
+newtype ElfGroup a = ElfGroup [Rucksack a] deriving (Show, Eq, Ord)
 type Rucksack a = Set.Set a
 
 handleInput :: [ElfGroup Char] -> IO ()
-handleInput elves = case M.sequence . map findBadge $ elves of
+handleInput elves = case M.mapM findBadge elves of
     Left err -> Sys.die err
     Right badges -> print . sum . map priority $ badges
 

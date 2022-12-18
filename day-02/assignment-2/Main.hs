@@ -38,7 +38,7 @@ main :: IO ()
 main = defaultMain parseInput handleInput
 
 handleInput :: [Strategy] -> IO ()
-handleInput = print . sum . map (uncurry score) . map chooseObject
+handleInput = print . sum . map (uncurry score . chooseObject)
 
 chooseObject :: Strategy -> Game
 chooseObject (them, Draw) = (them, them)

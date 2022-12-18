@@ -159,7 +159,7 @@ parseStacks = do
     parseStackEntry :: P.Parsec T.Text () (Maybe Char)
     parseStackEntry = parseNothing <|> parseLetter
 
-    parseNothing = P.string "   " $> pure Nothing
+    parseNothing = P.string "   " *> pure Nothing
     parseLetter = Just <$> (P.char '[' *> P.alphaNum <* P.char ']')
 
     parseStackNames :: P.Parsec T.Text () String
