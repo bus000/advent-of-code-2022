@@ -129,7 +129,7 @@ data Command = LS ![Entry] | CD !T.Text deriving (Show, Eq, Ord)
 data Entry = File !Word !T.Text | Directory !T.Text deriving (Show, Eq, Ord)
 
 newtype FileSystem = FileSystem
-    { _files :: (Map.Map [T.Text] Word)
+    { _files :: Map.Map [T.Text] Word
     } deriving (Show, Eq, Ord)
 
 data Shell = Shell
