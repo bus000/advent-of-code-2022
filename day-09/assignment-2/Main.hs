@@ -469,7 +469,6 @@ data Rope = Rope
 
 handleInput :: [Position] -> IO ()
 handleInput = print . Set.size . Set.fromList . map ropeTail . simulateRope 9
---handleInput = mapM_ print . simulateRope 9
 
 simulateRope :: Word -> [Position] -> [Rope]
 simulateRope tailLength = L.scanl' move initialRope
