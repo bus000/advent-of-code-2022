@@ -23,6 +23,10 @@ data Queue a = Queue
 instance Functor Queue where
     fmap f (Queue push pull) = Queue (map f push) (map f pull)
 
+instance Foldable Queue where
+    foldMap f (Queue push pull) = foldMap f push <> foldMap f pull
+    foldr f x = foldr f x . toList
+
 empty :: Queue a
 empty = Queue [] []
 
